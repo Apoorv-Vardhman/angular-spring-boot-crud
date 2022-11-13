@@ -1,0 +1,40 @@
+<div class="container pt-5">
+  <div class="d-flex justify-content-end">
+    <div class="">
+      <a class="btn btn-primary" routerLink="/students">All Students</a>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form class="" [formGroup]="studentForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label>First Name</label>
+          <input class="form-control" type="text" id="name" formControlName="firstName">
+          <div class="alert-danger alert" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            <div *ngIf="firstName.errors?.['required']">First Name required</div>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input class="form-control" type="text" id="lastName" formControlName="lastName">
+          <div class="alert alert-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <div *ngIf="lastName.errors?.['required']">Last name is required</div>
+            <div *ngIf="lastName.errors?.['minlength']">Last name should have minimum three characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input class="form-control" type="text" id="email" formControlName="email">
+          <div class="alert-danger alert" *ngIf="email.invalid && (email.dirty||email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Invalid email address</div>
+          </div>
+        </div>
+        <div class="pt-2">
+          <input type="submit" [disabled]="!studentForm.valid || submitted" class="btn btn-primary" value="Add Student" name="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
